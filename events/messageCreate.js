@@ -3,7 +3,7 @@ module.exports = (client, message) => {
     //make sure command starts with the correct prefix
      if (message.content.indexOf(client.config.prefix) !== 0) return;
     
-    2 //ignore bots
+    //ignore bots
     if (message.author.bot) return;
   
     const args = message.content.slice(client.config.prefix.length).trim().split(/ +/);

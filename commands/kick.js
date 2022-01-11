@@ -1,20 +1,37 @@
-exports.run = (client, message, [mention, ...reason]) => {
-    const modRole = message.guild.roles.cache.find(role => role.name === "Mods");
-    if (!modRole)
-      return console.log("The Mods role does not exist");
-  
-    if (!message.member.roles.cache.has(modRole.id))
-      return message.reply("You can't use this command.");
-  
-    if (message.mentions.members.size === 0)
-      return message.reply("Please mention a user to kick");
-  
-    if (!message.guild.me.hasPermission("KICK_MEMBERS"))
-      return message.reply("I don't have the `KICK_MEMBERS` permission");
-  
-    const kickMember = message.mentions.members.first();
-  
-    kickMember.kick(reason.join(" ")).then(member => {
-      message.reply(`${member.user.username} was successfully kicked.`);
-    });
-  };
+
+const config = require("../config");
+
+module.exports = {
+    kick: function kick(msg) {  
+      const args= msg.content.slice(config.prefix.length).trim().split(" ");
+        
+        if (msg.content.startsWith(`${config.prefix}kick`))
+        {
+            if (msg.author.bot)
+            {
+                return; //ignores messages written by bots so it doesn't loop
+            }
+            else
+            {
+              if (msg.member.roles.cache.has('929890956780658740'))
+                {
+                    if (!args.length)
+                    {
+                        msg.channel.send("No user was sepcified to be kicked.");
+                    }
+                    else
+                    {
+                        let member= msg.mentions.members.first();
+                        let reason= args.slice(1).join(" ");
+                        member.kick(reason);
+                        msg.channel.send(`${member} was kicked successfully for ${reason}`);  
+                    }
+                }
+                else 
+                {
+                    msg.channel.send("You don't have the authority to execute that command");
+                }
+            }
+        }
+    }
+}
