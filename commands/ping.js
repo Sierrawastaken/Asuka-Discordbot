@@ -1,4 +1,4 @@
-exports.run = async (client, message) => {
-    message.reply(`pong`)
+exports.run = (client, message) => {
+    message.send(`test`)
 
 }

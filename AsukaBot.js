@@ -4,7 +4,9 @@ const fs = require("fs")
 
 //dependencies
 const generateImage = require("./dependencies/generateImage")
+const config = require(`./config.json`)
 
+//intents
 const client = new Discord.Client({
     intents:[
         "GUILDS",
@@ -16,10 +18,11 @@ const client = new Discord.Client({
 client.commands = new Discord.Collection()
 client.events = new Discord.Collection()
 
-[`command_handler`, `event_handler`].forEach(handler => {
-    require(`./handlers/${handler}`)(client, Discord)
-})
+ ;[`command_handler`, `event_handler`].forEach(handler => {
+        require(`./Handlers/${handler}`)(client, Discord)
+    })
 
+/*
 client.on("guildMemberAdd", async (member) => {
     const img = await generateImage(member)
     member.guild.channels.cache.get(config.WelcomeChannelId).send({
@@ -27,5 +30,6 @@ client.on("guildMemberAdd", async (member) => {
         files: [img]
     })
 })
+*/
 
 client.login(config.token)
