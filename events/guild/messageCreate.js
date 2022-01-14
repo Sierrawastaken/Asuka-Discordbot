@@ -7,7 +7,13 @@ module.exports = (Discord, client, message) => {
     const args = message.content.slice(config.prefix.length).split(/ +/)
     const cmd = args.shift().toLocaleLowerCase()
 
-    const command = client.commands.get(cmd)
+    const command = client.commands.get(cmd) || client.commands.find(a => a.aliases.includes(cmd))
 
-    if(command) command.execute(client, message, args, Discord)
+    try {
+      command.execute(client, message, cmd, args, Discord)
+    } catch (err) {
+      message.reply(`There was an error when trying to execute this command`)
+      console.log(err)
+    }
+
 }
