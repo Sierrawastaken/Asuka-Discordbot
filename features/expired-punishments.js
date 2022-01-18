@@ -1,7 +1,8 @@
 const punishmentSchema = require(`../models/punishment-schema`)
 
 module.exports = (client) => {
-    client.on(`guildMemberAdd`, async (member) =>{
+    client.on(`guildMemberAdd`, async (member) => {
+        console.log(`test 0`)
         const result = await punishmentSchema.findOne({
             guildId: member.guild.id,
             userId: member.id,
@@ -15,6 +16,7 @@ module.exports = (client) => {
 
             if (mutedRole) {
                 member.roles.add(mutedRole)
+                console.log(`test 1`)
             }
         }
     })
@@ -37,6 +39,7 @@ module.exports = (client) => {
                 guild.members.unban(userId, `ban expired`)
             } else if (type === `mute`) {
                 const muteRole = guild.roles.cache.find((role) => role.name === `Literally 1984`)
+                console.log(`test 2`)
                 if (!muteRole) {
                     console.log(`"${guildId}" has no Literally 1984 role, sadge`)
                     continue
@@ -44,6 +47,7 @@ module.exports = (client) => {
 
                 const member = guild.members.cache.get(userId)
                 if (!member) {
+                    console.log(`test 5`)
                     continue
                 }
 

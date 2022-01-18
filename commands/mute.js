@@ -1,5 +1,6 @@
-const { Guild } = require("discord.js")
+const Discord = require("discord.js")
 const punishmentSchema = require(`../models/punishment-schema`)
+const test = require(`./../features/expired-punishments`)
 
 module.exports = {
     name: `mute`,
@@ -29,12 +30,13 @@ module.exports = {
         
         let time
         let type 
+
         try {
             const split = duration.match(/\d+|\D+/g)
             time = parseInt(split[0])
             type = split[1].toLowerCase()
         } catch (e) {
-            return message.channel.send(`Invaild syntax`)
+            return message.channel.send(`Invaild Syntax`)
         }
 
         if (type === `h`) {
@@ -49,19 +51,19 @@ module.exports = {
         expires.setMinutes(expires.getMinutes() + time)
 
         const result = await punishmentSchema.findOne({
-            guildId: Guild.id,
+            guildId: message.guild.id,
             userId,
             type: `mute`,
         })
 
         if (result) {
-            return message.channel.send(`<@${userId} is already experiencing communism`)
+            return message.channel.send(`<@${userId}> is already experiencing communism`)
         }
 
         try {
-            const member = await guild.members.fetch(userId)
+            const member = await message.guild.members.fetch(userId)
             if (member){
-                const muteRole = guild.roles.cache.find((role) => role.name === `Literally 1984`)
+                const muteRole = message.guild.roles.cache.find((role) => role.name === `Literally 1984`)
                 if (!muteRole) {
                     return message.channel.send(`This server has no Literally 1984 role, sadge`)
                 }
@@ -71,14 +73,14 @@ module.exports = {
 
             await new punishmentSchema({
                 userId,
-                guildId: guild.id,
-                staffId: staff.id,
+                guildId: message.guild.id,
                 reason,
                 expires,
                 type: `mute`,
             }).save()
         } catch (ignored) {
-            return message.channel.send(`Cannot mute that user`)
+            //return message.channel.send(`Cannot mute that user`)
+            return console.log(ignored)
         }
 
         return message.channel.send(`<@${userId}> will experience communism for "${duration}"`)

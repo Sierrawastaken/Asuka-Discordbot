@@ -10,7 +10,6 @@ const schema = new Schema (
     {
         userId: reqString,
         guildId: reqString,
-        staffId: reqString,
         reason: reqString,
         expires: Date,
         type: {

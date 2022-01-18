@@ -1,4 +1,9 @@
-exports.run = (client, message) => {
-    message.send(`test`)
+module.exports = {
+    name: `ping`,
+    description: `replys ping`,
 
+    execute(client, message, cmd, args, Discord) {
+        message.channel.send(`pong`)
+
+    }
 }
