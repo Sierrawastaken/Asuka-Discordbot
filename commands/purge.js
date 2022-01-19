@@ -2,7 +2,7 @@ module.exports = {
     name: `purge`,
     aliases: `clear`,
     description:`clears multible messages`,
-    //permissions: ["MANAGE_MESSAGES","ADMINISTRATOR"],
+    permissions: ["ADMINISTRATOR", "MANAGE_MESSAGES"],
     
     async execute(client, message, cmd, args, Discord) {
         if(!args[0]) return message.reply(`Please specify the number of messages to clear`)

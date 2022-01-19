@@ -9,6 +9,7 @@ const google = new Scrapper({
 module.exports = {
     name: `image`,
     description: `finds a image`,
+    permissions: ["SEND_MESSAGES"],
 
     async execute(client, message, cmd, args, Discord) {
         const imageQuery = args.join(` `)

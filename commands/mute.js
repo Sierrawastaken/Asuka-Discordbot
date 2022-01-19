@@ -6,6 +6,7 @@ module.exports = {
     name: `mute`,
     aliases: `silence`,
     description: `prevents a user from speaking`,
+    permissions: ["ADMINISTRATOR", "BAN_MEMBERS"],
 
     async execute(client, message, cmd, args, Discord) {
         let userId = args.shift()

@@ -1,7 +1,7 @@
 module.exports = {
     name: `unmute`,
     description: `un-silences a member`,
-   // permissions: ["MUTE_MEMBERS", "ADMINISTRATOR"],
+    permissions: ["ADMINISTRATOR", "BAN_MEMBERS"],
     
     execute(client, message, args, Discord) {
         const target = message.mentions.users.first()

@@ -3,6 +3,7 @@ const config = require(`../config.json`)
 module.exports = {
     name: `help`,
     description: `lists possible commands`,
+    permissions: ["SEND_MESSAGES"],
 
     execute(client, message, cmd, args, Discord) {
     const embed = new Discord.MessageEmbed()

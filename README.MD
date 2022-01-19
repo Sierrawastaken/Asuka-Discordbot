@@ -1,1 +1,1 @@
-:)
+Asuka is a lightweight multipurpose bot with the aims to be the only bot needed. Currently in development, if you encounter and bugs or have feature suggestions please DM `Sierra#7079`

@@ -1,6 +1,7 @@
 module.exports = {
     name: `kick`,
     description: `kicks a user`,
+    permissions: ["ADMINISTRATOR", "KICK_MEMBERS"],
 
     execute(client, message, cmd, args, Discord) {
         const target = message.mentions.users.first()
