@@ -33,7 +33,7 @@ mongoose.connect(config.MongoDBLogin, {
     console.log(err)
 })
 
-/*
+
 client.on("guildMemberAdd", async (member) => {
     const img = await generateImage(member)
     member.guild.channels.cache.get(config.WelcomeChannelId).send({
@@ -41,6 +41,6 @@ client.on("guildMemberAdd", async (member) => {
         files: [img]
     })
 })
-*/
+
 
 client.login(config.token)

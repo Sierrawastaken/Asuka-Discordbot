@@ -1,6 +1,6 @@
-const Discord = require("discord.js")
 const punishmentSchema = require(`../models/punishment-schema`)
 const test = require(`./../features/expired-punishments`)
+const config = require(`../config.json`)
 
 module.exports = {
     name: `mute`,
@@ -25,6 +25,16 @@ module.exports = {
             if (!user) {
                 return message.channel.send(`Couldnt find matching user`)
             }
+        }
+
+        userId = user.id
+        
+        if (user && !duration && !reason) {
+            const muteRole = message.guild.roles.cache.find((role) => role.name === config.muteRole)
+            const member = await message.guild.members.fetch(userId)
+            member.roles.add(muteRole)
+            message.channel.send(`${user} has been muted indefinetly`)
+            return
         }
 
         userId = user.id
@@ -64,7 +74,7 @@ module.exports = {
         try {
             const member = await message.guild.members.fetch(userId)
             if (member){
-                const muteRole = message.guild.roles.cache.find((role) => role.name === `Literally 1984`)
+                const muteRole = message.guild.roles.cache.find((role) => role.name === config.muteRole)
                 if (!muteRole) {
                     return message.channel.send(`This server has no Literally 1984 role, sadge`)
                 }
@@ -79,9 +89,9 @@ module.exports = {
                 expires,
                 type: `mute`,
             }).save()
-        } catch (ignored) {
+        } catch (err) {
             //return message.channel.send(`Cannot mute that user`)
-            return console.log(ignored)
+            return console.log(err)
         }
 
         return message.channel.send(`<@${userId}> will experience communism for "${duration}"`)

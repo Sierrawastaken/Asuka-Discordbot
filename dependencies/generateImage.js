@@ -15,7 +15,7 @@ const av = {
 }
 
 const generateImage = async (member) => {
-    let username = member.user.username
+    let username = member.user.id
     let discrim = member.user.discriminator 
     let avatarURL = member.user.displayAvatarURL({format: "png", dynamic: false, size: av.size})
 
