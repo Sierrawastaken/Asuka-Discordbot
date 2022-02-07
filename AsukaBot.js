@@ -2,9 +2,6 @@
 const Discord = require("discord.js")
 const fs = require("fs")
 const mongoose = require(`mongoose`)
-
-//dependencies
-const generateImage = require("./dependencies/generateImage")
 const config = require(`./config.json`)
 
 //intents
@@ -32,15 +29,5 @@ mongoose.connect(config.MongoDBLogin, {
 }).catch((err) => {
     console.log(err)
 })
-
-
-client.on("guildMemberAdd", async (member) => {
-    const img = await generateImage(member)
-    member.guild.channels.cache.get(config.WelcomeChannelId).send({
-        content: `<@${member.id}> Welcome to the server!`,
-        files: [img]
-    })
-})
-
 
 client.login(config.token)
