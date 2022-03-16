@@ -8,10 +8,9 @@ const google = new Scrapper({
 
 module.exports = {
     name: `image`,
-    description: `finds a image`,
     permissions: ["SEND_MESSAGES"],
-
-    async execute(client, message, cmd, args, Discord) {
+    devOnly: false,
+    run: async ({client, message, args}) => {
         const imageQuery = args.join(` `)
         if (!imageQuery) return message.channel.send(`Please enter keywords to search`)
 

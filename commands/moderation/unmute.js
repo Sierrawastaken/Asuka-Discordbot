@@ -1,11 +1,10 @@
-const config = require(`../config.json`)
+const config = require(`../../config.json`)
 
 module.exports = {
     name: `unmute`,
-    description: `un-silences a member`,
     permissions: ["ADMINISTRATOR", "BAN_MEMBERS"],
-    
-    execute(client, message, args, Discord) {
+    devOnly: false,
+    run: ({client, message}) => {
         const target = message.mentions.users.first()
         if(target) {
             let muterole = message.guild.roles.cache.find(role => role.name === config.muteRole)

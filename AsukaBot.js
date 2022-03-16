@@ -13,12 +13,24 @@ const client = new Discord.Client({
     ]
 })
 
+const bot = {
+    client,
+    prefix: config.prefix,
+    owner: config.ownerID
+}
+
+
+
 client.commands = new Discord.Collection()
 client.events = new Discord.Collection()
 
-;[`command_handler`, `event_handler`].forEach(handler => {
-        require(`./Handlers/${handler}`)(client, Discord)
-})
+client.loadEvents = (bot, reload) => require("./handlers/events")(bot, reload)
+client.loadCommands = (bot, reload) => require("./handlers/commands")(bot, reload)
+
+client.loadEvents(bot, false)
+client.loadCommands(bot, false)
+
+module.exports = bot
 
 mongoose.connect(config.MongoDBLogin, {
     useNewUrlParser: true,

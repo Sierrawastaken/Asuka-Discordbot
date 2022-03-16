@@ -1,11 +1,10 @@
-const config = require(`../config.json`)
+const config = require(`../../config.json`)
 
 module.exports = {
     name: `help`,
-    description: `lists possible commands`,
     permissions: ["SEND_MESSAGES"],
-
-    execute(client, message, cmd, args, Discord) {
+    devOnly: false,
+    run: ({client, message, Discord}) => {
     const embed = new Discord.MessageEmbed()
 
     .setColor("#886146")
@@ -14,7 +13,7 @@ module.exports = {
     .setURL("https://github.com/sierrawastaken/Asuka-Discordbot#readme")
     .setDescription("Asuka is a lightweight multipurpose bot with the aims to be the only bot needed. Currently in development, if you encounter and bugs or have feature suggestions please DM `Sierra#7079` ")
     .setThumbnail("https://i.imgur.com/apUNdr8.png")
-    .addField("Check the Github for more details/syntax about commands", "Prefix = a! ")
+    .addField("Check the Github for more details/syntax about commands", `Prefix = ${config.prefix} `)
     .addFields(
         { name: "Public", value: "image", inline: true },
         { name: "Moderation", value: "Mute, Ban, Kick, Purge", inline: true },

@@ -1,14 +1,12 @@
-const punishmentSchema = require(`../models/punishment-schema`)
-const test = require(`./../features/expired-punishments`)
-const config = require(`../config.json`)
+const punishmentSchema = require(`../../models/punishment-schema`)
+const test = require(`../../features/expired-punishments`)
+const config = require(`../../config.json`)
 
 module.exports = {
     name: `mute`,
-    aliases: `silence`,
-    description: `prevents a user from speaking`,
     permissions: ["ADMINISTRATOR", "BAN_MEMBERS"],
-
-    async execute(client, message, cmd, args, Discord) {
+    devOnly: false,
+    run: async ({client, message, args}) => {
         let userId = args.shift()
         const duration = args.shift()
         const reason = args.join(` `)

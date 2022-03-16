@@ -1,10 +1,8 @@
 module.exports = {
     name: `purge`,
-    aliases: `clear`,
-    description:`clears multible messages`,
     permissions: ["ADMINISTRATOR", "MANAGE_MESSAGES"],
-    
-    async execute(client, message, cmd, args, Discord) {
+    devOnly: false,
+    run: async ({client, message, args}) => {
         if(!args[0]) return message.reply(`Please specify the number of messages to clear`)
         if(isNaN(args[0])) return message.reply(`Please enter a vaild string`)
         if(args[0] > 99) return message.reply(`Please enter a number less than 99`)

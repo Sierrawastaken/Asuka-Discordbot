@@ -1,13 +1,12 @@
 const { MessageEmbed } = require('discord.js')
-const config = require(`../config.json`)
-const blacklistSchema = require(`../models/blacklist-schema`)
+const config = require(`../../config.json`)
+const blacklistSchema = require(`../../models/blacklist-schema`)
 
 module.exports = {
     name: 'blacklist',
-    description: 'Blacklists a user from using the bot',
     permissions: ["SEND_MESSAGES"],
-
-    execute: async (client, message, cmd, args, Discord) => { 
+    devOnly: true,
+    run: async ({client, message, args}) => { 
         if(message.author.id != config.ownerID) {
             return message.channel.send(`This can only be ran by ${config.ownerID}`) 
         }

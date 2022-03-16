@@ -1,12 +1,10 @@
-const punishmentSchema = require(`../models/punishment-schema`)
+const punishmentSchema = require(`../../models/punishment-schema`)
 
 module.exports = {
     name: `ban`,
-    aliases: `kill`,
-    description: `removes a user from the server`,
     permissions: ["ADMINISTRATOR", "BAN_MEMBERS"],
-
-    async execute(client, message, cmd, args, Discord) {
+    devOnly: false,
+    run: async ({client, message, args}) => {
         if(!message.member.hasPermission("BAN_MEMBERS")) {
             return channel.message.send(`You dont have the required permissions to execute this command`)
         }
