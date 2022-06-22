@@ -45,5 +45,4 @@ mongoose.connect(config.MongoDBLogin, {
     console.log("Database connection failed (You probably have your vpn on you dense fuck)")
 })
 
-//client.start(config.token, false)
 client.login(config.token)

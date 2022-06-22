@@ -1,4 +1,6 @@
 # auto generated files
 node_modules/
+package-lock.json
+
 # config files, you can fill out config.example.json with your information and rename it to "config.json"
 config.json
