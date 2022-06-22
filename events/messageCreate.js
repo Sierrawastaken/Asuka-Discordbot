@@ -1,7 +1,6 @@
 const fs = require("fs").promises
 const config = require(`../config.json`)
 const cringeUsers = require(`../utils/userAttributes.json`)
-//import PowershellInstance from '../utils/consoleRun'
 
 module.exports = {
     name: "messageCreate",

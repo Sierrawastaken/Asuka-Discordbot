@@ -2,4 +2,3 @@
 node_modules/
 # config files, you can fill out config.example.json with your information and rename it to "config.json"
 config.json
-configs.json
