@@ -12,7 +12,10 @@ module.exports = {
     devOnly: false,
     run: async ({client, message, args}) => {
         const imageQuery = args.join(` `)
-        if (!imageQuery) return message.channel.send(`Please enter keywords to search`)
+        if (!imageQuery) {
+          message.channel.send(`Please enter keywords to search`)
+          return 
+        }
 
         const imageResults = await google.scrape(imageQuery, 1)
         message.channel.send(imageResults[0].url)

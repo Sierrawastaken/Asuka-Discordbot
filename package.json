@@ -1,0 +1,24 @@
+{
+  "name": "asuka-bot",
+  "version": "1.2.6",
+  "description": "Discord bot go brrrrr",
+  "main": "AsukaBot.js",
+  "repository": {
+    "url": "https://github.com/Sierrawastaken/Asuka-Discordbot",
+    "type": "git"
+  },
+  "author": "Sierra#7079",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "discord.js": "^13.5.1",
+    "fs": "^0.0.1-security",
+    "images-scraper": "^6.4.0",
+    "mal-scraper": "^2.11.4",
+    "mongoose": "^6.1.6",
+    "nhentai-api": "^3.4.3",
+    "node-powershell": "^5.0.1",
+    "prompt": "^1.3.0",
+    "puppeteer": "^13.6.0"
+  },
+  "license": "MIT"
+}

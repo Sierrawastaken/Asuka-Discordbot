@@ -8,14 +8,14 @@ const reqString = {
 
 const schema = new Schema (
     {
-        userId: reqString,
-        guildId: reqString,
+        word: reqString,
+        level: reqString,
     },
     {
         timestamps: true,
     }
 )
 
-const name = `blacklists`
+const name = `badword`
 
 module.exports = mongoose.models[name] || mongoose.model(name, schema)

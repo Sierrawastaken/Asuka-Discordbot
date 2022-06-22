@@ -3,19 +3,28 @@ module.exports = {
     permissions: ["ADMINISTRATOR", "KICK_MEMBERS"],
     devOnly: false,
     run: ({client, message, args}) => {
-        const target = message.mentions.users.first()
+        let target = message.mentions.users.first()
+
+        if (!target) {
+            target = args.shift()
+        }
+        
+        args.shift()
         const reason = args.join(` `)
         
         if (target) {
             const targetID = message.guild.members.cache.get(target.id)
+            if (!reason) {
+                targetID.kick()
+                return message.channel.send(`${targetID} was kicked`)
+            }
             targetID.kick()
-            args.shift()
 
-            message.channel.send(`${targetID} was kicked for`)
+            return message.channel.send(`${targetID} was kicked for ${reason}`)
         }
         else {
-            message.channel.send(`no member specified`)
+            return message.channel.send(`no member specified`)
         }
         
     }
-}
+} 

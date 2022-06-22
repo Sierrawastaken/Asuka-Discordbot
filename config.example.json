@@ -1,0 +1,13 @@
+{
+  "__comment": "Remove the .example from this fill and fill out the values",
+  "token": "Enter bot token",
+  "prefix": "Enter bot prefix",
+  "ownerID": "Enter your discord ID",
+  "WelcomeChannelName": "welcome",
+  "MongoDBLogin":"Enter Mongo DB login",
+  "defaultrole": "Enter default role NAME",
+  "muteRole": "Enter muted role NAME",
+  "botTag": "enter bot NAME",
+  "logChannel": "Enter log channel NAME"
+}
+  

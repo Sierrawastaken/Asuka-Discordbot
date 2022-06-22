@@ -4,7 +4,7 @@ const config = require(`../../config.json`)
 
 module.exports = {
     name: `mute`,
-    permissions: ["ADMINISTRATOR", "BAN_MEMBERS"],
+    permissions: ["ADMINISTRATOR", "MODERATE_MEMBERS"],
     devOnly: false,
     run: async ({client, message, args}) => {
         let userId = args.shift()
@@ -29,10 +29,22 @@ module.exports = {
         
         if (user && !duration && !reason) {
             const muteRole = message.guild.roles.cache.find((role) => role.name === config.muteRole)
+
+            if (!muteRole) {
+                return message.channel.send("No mute role found (make sure you have it set in config.json)")
+            }
+
             const member = await message.guild.members.fetch(userId)
             member.roles.add(muteRole)
-            message.channel.send(`${user} has been muted indefinetly`)
-            return
+
+            return message.channel.send({
+                content: `${user}`,
+                files: [{
+                  attachment: 'utils/images/mute.png',
+                  name: 'mute.png',
+                  description: 'L bozo'
+                }]
+              })
         }
 
         userId = user.id
@@ -71,10 +83,10 @@ module.exports = {
 
         try {
             const member = await message.guild.members.fetch(userId)
-            if (member){
+            if (member) {
                 const muteRole = message.guild.roles.cache.find((role) => role.name === config.muteRole)
                 if (!muteRole) {
-                    return message.channel.send(`This server has no Literally 1984 role, sadge`)
+                    return message.channel.send(`This server has no ${config.muteRole} role`)
                 }
 
                 member.roles.add(muteRole)
@@ -87,8 +99,9 @@ module.exports = {
                 expires,
                 type: `mute`,
             }).save()
+
         } catch (err) {
-            //return message.channel.send(`Cannot mute that user`)
+            message.channel.send(`Cannot mute that user`)
             return console.log(err)
         }
 

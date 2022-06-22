@@ -5,9 +5,6 @@ module.exports = {
     permissions: ["ADMINISTRATOR", "BAN_MEMBERS"],
     devOnly: false,
     run: async ({client, message, args}) => {
-        if(!message.member.hasPermission("BAN_MEMBERS")) {
-            return channel.message.send(`You dont have the required permissions to execute this command`)
-        }
         
         let userId = args.shift()
         const duration = args.shift()
